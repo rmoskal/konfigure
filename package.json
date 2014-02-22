@@ -1,0 +1,30 @@
+{
+  "name": "konfigure",
+  "version": "0.1.0",
+  "description": "Support for multiple configuration files with overrides from environment variables, good for deployment to PAAS",
+  "main": "konfigure.js",
+  "scripts": {
+    "test": "mocha --recursive --reporter spec test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rmoskal/konfigure.git"
+  },
+  "keywords": [
+    "node",
+    "configuration",
+    "files"
+  ],
+  "author": "Robert Moskal",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/rmoskal/konfigure/issues"
+  },
+  "homepage": "https://github.com/rmoskal/konfigure",
+  "dependencies": {
+    "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "chai": "^1.9.0"
+  }
+}
