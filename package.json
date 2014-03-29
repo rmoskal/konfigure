@@ -1,6 +1,6 @@
 {
   "name": "konfigure",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Support for multiple configuration files with overrides from environment variables, good for deployment to PAAS",
   "main": "konfigure.js",
   "scripts": {
@@ -13,10 +13,11 @@
   "keywords": [
     "node",
     "configuration",
-    "files"
+    "settings",
+     "PAAS"
   ],
   "author": "Robert Moskal",
-  "license": "BSD",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/rmoskal/konfigure/issues"
   },
