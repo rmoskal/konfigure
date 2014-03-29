@@ -10,7 +10,7 @@ Konfigure accepts the full path to a configuration file, the process environment
 
 If a file with the name of the configuration file with '.local.' interposed is found in the same directory, variables will be preferentially mapped from that. In the above this would be 'config.local.js' Developers can use this to override any shared settings for a local environment. Normally this file is added to .gitignore.
 
-You can map various environment variables to various configuration keys.  For example, in the above example, the MONGOHQ_URL is mapped to a configuration key called 'mongo.production.uri'.
+You can also map environment variables to various configuration keys.  For example, in the above example, the MONGOHQ_URL is mapped to a configuration key called 'mongo.production.uri'.
 
 As of version .2 you  environment specific configurations out of the config file using a short-hand notation. Instead of doing this:
 
@@ -22,8 +22,8 @@ You can just do this:
 
 It will correctly parse the key for a configuration file that has a top level environment key like so:
 
-var cfg = {
-	         PORT : 3000
+    var cfg = {
+	  PORT : 3000
 	, environment : 'development'
 	, mongo : {
     		development : {

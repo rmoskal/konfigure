@@ -15,7 +15,7 @@ var _ = require('lodash')
  *
  * This little module will load configuration from a file, merging it with a local fiile
  * called cfg_file.local.js in the same directory and finally merging on top of that
- * any environment mvariables that
+ * any environment mvariables that are mapped
  *
  * @param cfg_file  -- the full path to the config file
  * @param env  -- dictionary containing the system enviromnney
@@ -35,13 +35,10 @@ exports.config = function( cfg_file, env, maps){
     };
 
 
-
 //Functions that do the work and are exposed for testing
 
-
-
 /**
- * Wrapped version on the obove that doesn't depend on files
+ * Wrapped version of the above that doesn't depend on files
  * @param cfg
  * @param local
  * @param env
@@ -147,9 +144,6 @@ exports._merge_special = function(mappings, cfg, env) {
             if (each[0] in  env)
                 _merge_one(cfg,each[1], env[each[0]])
     } );
-
-
-
 
 }
 
