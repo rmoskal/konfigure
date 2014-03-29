@@ -29,13 +29,16 @@ exports.config = function( cfg_file, env, maps){
         if (fs.existsSync(local_config))
             local = require(this._get_local_cfg(cfg_file));
         this._config(cfg,local,env,maps);
-        return cfg;
 
+        return cfg;
 
     };
 
 
+
 //Functions that do the work and are exposed for testing
+
+
 
 /**
  * Wrapped version on the obove that doesn't depend on files
@@ -50,6 +53,14 @@ exports._config = function( cfg,  local, env, maps){
     this._merge_configs(cfg,local);
     this._merge_env_variables(cfg,env);
     this._merge_special(maps,cfg,env);
+
+    //Provide a function that returns am environment specific key version
+    cfg.get = function(ref) {
+         if (!('environment' in cfg))
+                throw new Error("Config file requires top level 'environment' key");
+
+          return ref[cfg.environment];
+    };
 
 };
 

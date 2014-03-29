@@ -78,14 +78,14 @@ describe ("Konfigure", function(){
     });
 
 
-    it ("it will not map an environment variable mapping when it doesn't exist in the config", function(){
+    it ("will not map an environment variable mapping when it doesn't exist in the config", function(){
         var cfg2 = {PORT: 3000};
         cfg._merge_special([["POOOOT", "PORT"],["LOOOT", "ADDED"]], cfg2,{POOOOT:10000, LOOT:"a"});
         expect(cfg2.LOOT).to.be.undefined;
     });
 
 
-    it ("it should combine together all three steps", function(){
+    it ("should combine together all three steps", function(){
         var cfg2 = {PORT: 3000, DB:{uri:"here"}, FROM_ENV:true};
         var local = {PORT: 100}
         cfg._config(cfg2 ,local, {FROM_ENV:false, DBURI:"elsewhere"}, [["DBURI","DB.uri"]]);
@@ -94,6 +94,50 @@ describe ("Konfigure", function(){
         expect(cfg2.DB.uri).to.equal("elsewhere");
 
     });
+
+    it ('pulls a environment specific config', function(){
+
+        var cfg2 = {environment:'test', DB:{test:{uri:"here"}, production:{uri:"there"}}};
+        cfg._config(cfg2);
+        cfg2.get(cfg2.DB).uri.should.equal('here');
+
+    });
+
+    it ('pulls a environment specific config2', function(){
+
+        var cfg2 = {environment:'production', DB:{test:{uri:"here"}, production:{uri:"there"}}};
+        cfg._config(cfg2);
+        cfg2.get(cfg2.DB).uri.should.equal('there');
+
+    });
+
+    it ('fails when the top level environment key is not set', function(){
+
+        var cfg2 = {DB:{test:{uri:"here"}, production:{uri:"there"}}};
+        cfg._config(cfg2);
+        expect (function(){cfg2.get(cfg2.DB)}).to.throw("Config file requires top level 'environment' key");
+
+    });
+
+    it ('returns undefined if there is no target', function(){
+
+        var cfg2 = {environment:'production', DB:{test:{uri:"here"}}};
+        cfg._config(cfg2);
+        expect(cfg2.get(cfg2.DB)).to.be.undefined;
+
+    });
+
+
+    it ("handles an edge case where 'environment' is misspecified", function(){
+
+        var cfg2 = {environment:'', DB:{test:{uri:"here"}, production:{uri:"there"}}};
+        cfg._config(cfg2);
+        expect(cfg2.get(cfg2.DB)).to.be.undefined;
+
+    });
+
+
+
 
 
 
