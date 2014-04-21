@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/rmoskal/konfigure",
   "dependencies": {
-    "lodash": "~2.4.1"
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
     "chai": "^1.9.0"
