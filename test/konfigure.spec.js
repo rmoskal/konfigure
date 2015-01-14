@@ -136,6 +136,25 @@ describe ("Konfigure", function(){
 
     });
 
+    it ('sets a environment specific config2', function(){
+
+        var cfg2 = {environment:'production', DB:{test:{uri:"here"}, production:{uri:"there"}}};
+        cfg._config(cfg2);
+        cfg2.set(cfg2.DB, {uri:"overwrite"});
+        cfg2.get(cfg2.DB).uri.should.equal('overwrite');
+
+    });
+
+    it ('fails with a type error when a key does not exist', function(){
+
+        var cfg2 = {environment:'production', DB:{test:{uri:"here"}, production:{uri:"there"}}};
+        cfg._config(cfg2);
+        expect (function(){cfg2.set(cfg2.XXX, {uri:"overwrite"});}).to.throw("Cannot set property \'production\' of undefined");
+
+
+    });
+
+
 
 
 

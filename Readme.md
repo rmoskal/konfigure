@@ -49,4 +49,10 @@ It will correctly parse the key for a configuration file that has a top level en
     }
 
 
+You can also call a set function to set a value for the current environment in the same way:
+
+    config.set(config.mongo, {	uri : 'mongodb://jambo:baz'});
+
+Allowing for an easy override of any value. You'll get a TypeError if the key doesn't exist.
+
 The code is well tested, and is dependent on lodash.

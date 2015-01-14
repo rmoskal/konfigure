@@ -59,6 +59,14 @@ exports._config = function( cfg,  local, env, maps){
           return ref[cfg.environment];
     };
 
+    //Provide a function that sets an environment key by a specific version
+    cfg.set = function(ref, val) {
+        if (!('environment' in cfg))
+            throw new Error("Config file requires top level 'environment' key");
+
+        return ref[cfg.environment] = val;
+    };
+
 };
 
 
