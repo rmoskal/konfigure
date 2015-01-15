@@ -93,31 +93,26 @@ exports._merge_configs = function(base, local) {
 };
 
 
+
 /**
  * Function that updates the config with a single name/value pair
+
  * @param cfg
- * @param key
+ * @param key a string in dot notation "foo.baz"
  * @param value
- * @private
  */
-var _merge_one = function(cfg,key, value) {
-
-    var parts  = key.split(".") ;
-    if(parts.length == 1) {
-        if (key in cfg)
-            cfg[key] =  value
-    }
-    else {
-        if ( eval("cfg."+ key ) === undefined)
-            return true;
-        if (_.isString(value))
-            eval("cfg."+ key +"="+  '"'+value+'"') ;
-        else
-            eval("cfg."+ key +"="+value);
-
+var _merge_one = function (cfg, key, value) {
+    var tags = key.split("."), len = tags.length - 1;
+    for (var i = 0; i < len; i++) {
+        cfg = cfg[tags[i]];
     }
 
+    if ( cfg[tags[len]] === undefined)
+        return true;
+
+    cfg[tags[len]] = value;
 };
+
 
 
 /**
