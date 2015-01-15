@@ -23,7 +23,7 @@ var _ = require('lodash')
  */
 exports.config = function( cfg_file, env, maps){
 
-        var cfg = require(cfg_file) ;
+        var cfg = JSON.parse(fs.readFileSync(cfg_file, 'utf8'));;
         var local_config = this._get_local_cfg(cfg_file)
         var local = {};
         if (fs.existsSync(local_config))
