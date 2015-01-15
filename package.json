@@ -1,6 +1,6 @@
 {
   "name": "konfigure",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Support for multiple configuration files with overrides from environment variables, good for deployment to PAAS",
   "main": "konfigure.js",
   "scripts": {

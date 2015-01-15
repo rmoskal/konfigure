@@ -140,7 +140,7 @@ describe ("Konfigure", function(){
 
         var cfg2 = {environment:'production', DB:{test:{uri:"here"}, production:{uri:"there"}}};
         cfg._config(cfg2);
-        cfg2.set(cfg2.DB, {uri:"overwrite"});
+        cfg2.set('DB', {uri:"overwrite"});
         cfg2.get(cfg2.DB).uri.should.equal('overwrite');
 
     });
@@ -149,7 +149,7 @@ describe ("Konfigure", function(){
 
         var cfg2 = {environment:'production', DB:{test:{uri:"here"}, production:{uri:"there"}}};
         cfg._config(cfg2);
-        expect (function(){cfg2.set(cfg2.XXX, {uri:"overwrite"});}).to.throw("Cannot set property \'production\' of undefined");
+        expect (function(){cfg2.set('XXX', {uri:"overwrite"});}).to.throw("Cannot read property \'production\' of undefined");
 
 
     });
